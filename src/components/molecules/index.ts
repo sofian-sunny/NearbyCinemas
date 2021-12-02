@@ -1,2 +1,3 @@
 import MovieDetailsCard from './movieDetails';
-export {MovieDetailsCard};
+import DetailsBottomView from './detailsBottomView';
+export {MovieDetailsCard, DetailsBottomView};

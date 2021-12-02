@@ -42,7 +42,7 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
 
   // show activity indicator
   const showLoader = () => {
-    if (isLoading && !isErrorInLoadingApi) {
+    if (!isLoading || isErrorInLoadingApi) {
       return null;
     }
 

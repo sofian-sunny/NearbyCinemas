@@ -13,7 +13,7 @@ const nearbyCinemasReducer = (state = initialState, action: any) => {
       return {
         ...state,
         nearbyCinemasResult: null,
-        isLoading: false,
+        isLoading: true,
         isErrorInLoadingApi: false,
         errorMessage: '',
       };
@@ -30,7 +30,7 @@ const nearbyCinemasReducer = (state = initialState, action: any) => {
         ...state,
         nearbyCinemasResult: action.data,
         isLoading: false,
-        isErrorInLoadingApi: false,
+        isErrorInLoadingApi: true,
         errorMessage: '',
       };
   }

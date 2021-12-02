@@ -13,7 +13,7 @@ const movieDetailsReducer = (state = initialState, action: any) => {
       return {
         ...state,
         movieDetailsResult: null,
-        isLoading: false,
+        isLoading: true,
         isErrorInLoadingApi: false,
         errorMessage: '',
       };
@@ -30,7 +30,7 @@ const movieDetailsReducer = (state = initialState, action: any) => {
         ...state,
         movieDetailsResult: action.data,
         isLoading: false,
-        isErrorInLoadingApi: false,
+        isErrorInLoadingApi: true,
         errorMessage: '',
       };
   }

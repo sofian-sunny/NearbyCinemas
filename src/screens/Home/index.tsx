@@ -120,6 +120,8 @@ const HomeScreen = (): React.ReactElement => {
     );
   };
 
+  console.log('dropDownCinemaItems ', dropDownCinemaItems);
+
   return (
     <View style={container}>
       <SafeAreaView>

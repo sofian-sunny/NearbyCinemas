@@ -13,7 +13,7 @@ const cinemaMoviesReducer = (state = initialState, action: any) => {
       return {
         ...state,
         cinemaMoviesResult: null,
-        isLoading: false,
+        isLoading: true,
         isErrorInLoadingApi: false,
         errorMessage: '',
       };
@@ -30,7 +30,7 @@ const cinemaMoviesReducer = (state = initialState, action: any) => {
         ...state,
         cinemaMoviesResult: action.data,
         isLoading: false,
-        isErrorInLoadingApi: false,
+        isErrorInLoadingApi: true,
         errorMessage: '',
       };
   }
