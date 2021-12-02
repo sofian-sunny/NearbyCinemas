@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, ImageBackground,, ActivityIndicator} from 'react-native';
+import {View, ImageBackground, ActivityIndicator} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {BlurView} from '@react-native-community/blur';
 import {useNavigation} from '@react-navigation/native';
@@ -15,11 +15,12 @@ const {bgImage, contentContainer, playIcon, titleStyle, loaderContainer} =
   styles;
 
 const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
+  // get selected movie item
   const movieListItem = route?.params?.movieListItem;
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  console.log('movieListItem ', movieListItem);
 
+  // get movie details state response
   const movieDetailsResponse = useSelector(
     (state: RootState) => state?.movieDetailsReducer,
   );
@@ -39,6 +40,7 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
     }
   }, [movieListItem, dispatch]);
 
+  // show activity indicator
   const showLoader = () => {
     if (isLoading && !isErrorInLoadingApi) {
       return null;
@@ -48,6 +50,7 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
   };
 
   const renderBackgroundImage = () => {
+    // get poster image for the selected movie
     const moviePosterImg =
       movieListItem?.images?.poster?.['1']?.medium?.film_image;
 
@@ -55,7 +58,6 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
     const onPressBackButton = () => {
       navigation.goBack();
     };
-    console.log('moviePosterImg ', moviePosterImg);
 
     return (
       <ImageBackground

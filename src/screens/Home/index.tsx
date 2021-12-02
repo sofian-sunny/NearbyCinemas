@@ -31,9 +31,13 @@ const HomeScreen = (): React.ReactElement => {
     useState<DropDownItem[]>();
   const [selectedCinemaItem, setSelectedCinemaItem] = useState(0);
   const [isCinemaDropdownOpen, setCinemaDropdownOpen] = useState(false);
+
+  // get nearby cinema state response
   const nearByCinemasResponse = useSelector(
     (state: RootState) => state.nearbyCinemasReducer,
   );
+
+  // get cinema movie state response
   const cinemaMoviesResponse: CinemaMovies = useSelector(
     (state: RootState) => state?.cinemaMoviesReducer?.cinemaMoviesResult,
   );
@@ -42,6 +46,7 @@ const HomeScreen = (): React.ReactElement => {
     let headers = defaultMovieGlueHeader;
     headers.geolocation = '-22.0;14.0';
     const payload = {url: 'cinemasNearby/?n=5', headers: headers};
+    // dispatch nearbyCinema api
     dispatch(fetchNearbyCinemasAction(payload));
   }, [dispatch]);
 
@@ -49,13 +54,16 @@ const HomeScreen = (): React.ReactElement => {
     if (nearByCinemasResponse?.nearbyCinemasResult?.cinemas) {
       const {nearbyCinemasResult} = nearByCinemasResponse;
       const {cinemas} = nearbyCinemasResult;
+      // create dropdown items array
       const dropDownItemsArray = sortCinemasByDistance(cinemas);
       setDropdownCinemaItems(dropDownItemsArray);
+      // set selected cinema to zero position of sorted by distance array
       setSelectedCinemaItem(dropDownItemsArray[0].value);
     }
   }, [nearByCinemasResponse]);
 
   const onPressMovieItem = selectedMovieItem => {
+    // navigate to the movie details page and pass selected movie item
     navigation.navigate(MainRoutes.DetailScreen, {
       movieListItem: selectedMovieItem,
     });
@@ -68,9 +76,11 @@ const HomeScreen = (): React.ReactElement => {
       url: `cinemaShowTimes/?cinema_id=${selectedCinemaItem}&date=${date}`,
       headers: headers,
     };
+    // dispatch selected cinema movies api
     dispatch(fetchCinemaMoviesAction(payload));
   }, [selectedCinemaItem, dispatch]);
 
+  // render slider item
   const _renderItem = ({item}, parallaxProps) => {
     const moviePoster = item?.images?.poster?.['1']?.medium?.film_image;
     const selectedItem = {...item};
