@@ -15,6 +15,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba( 0, 0, 0, 0.6 )',
+    paddingHorizontal: moderateScale(15),
   },
   text: {
     color: white,

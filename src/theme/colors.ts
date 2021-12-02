@@ -6,6 +6,7 @@ const colors = {
   mirage: '#1F273E',
   turquoise: '#3DCBCB',
   yellow: '#f8ca56',
+  red: '#ed4c3d',
 };
 
 export default colors;

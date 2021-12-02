@@ -6,7 +6,6 @@ const {white} = colors;
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     marginBottom: verticalScale(10),
     justifyContent: 'center',
     alignItem: 'center',

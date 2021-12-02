@@ -7,7 +7,7 @@ import {BackButton, OnPressWrapper} from '../../components/atoms';
 import {fetchMovieDetailsAction} from '../../stores/actions';
 import {defaultMovieGlueHeader} from '../../utils/constants';
 import {RootState} from '../../stores/reducers';
-import {MovieDetailsCard} from '../../components/molecules';
+import {MovieDetailsFooter} from '../../components/organisms';
 import {PLAY_ICON} from '../../assets';
 import styles from './style';
 
@@ -77,7 +77,7 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
           </OnPressWrapper>
           <View style={contentContainer}>
             {movieDetailsResult && (
-              <MovieDetailsCard
+              <MovieDetailsFooter
                 imageIcon={PLAY_ICON}
                 title={film_name}
                 imageStyle={playIcon}

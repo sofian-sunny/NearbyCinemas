@@ -4,6 +4,7 @@ import DropdownView from './dropdownView';
 import BackButton from './backButton';
 import OnPressWrapper from './onPressWrapper';
 import ImageView from './image';
+import ButtonView from './button';
 
 export {
   CustomText,
@@ -12,4 +13,5 @@ export {
   BackButton,
   OnPressWrapper,
   ImageView,
+  ButtonView,
 };
