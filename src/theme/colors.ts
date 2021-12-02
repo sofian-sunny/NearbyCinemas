@@ -7,6 +7,8 @@ const colors = {
   turquoise: '#3DCBCB',
   yellow: '#f8ca56',
   red: '#ed4c3d',
+  dark_gray: '#7e797f',
+  blue_color: '#3d83c0',
 };
 
 export default colors;

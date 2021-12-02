@@ -16,11 +16,11 @@ const sortCinemasByDistance = (data: ICinema[]) => {
 };
 
 // convert minutes to hour min format
-const timeConvertHourMiins = timeInMins => {
+const timeConvertHourMins = timeInMins => {
   var hours = timeInMins / 60;
   var rhours = Math.floor(hours);
   var minutes = (hours - rhours) * 60;
   return rhours.toFixed() + 'h  ' + minutes.toFixed() + 'm';
 };
 
-export {sortCinemasByDistance, timeConvertHourMiins};
+export {sortCinemasByDistance, timeConvertHourMins};

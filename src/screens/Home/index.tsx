@@ -11,9 +11,11 @@ import {MainRoutes} from '../../navigation/routes';
 import {DropDownItem} from '../../type/type';
 import {RootState} from '../../stores/reducers';
 import {DropdownView} from '../../components/atoms';
+import {HeadingRow} from '../../components/molecules';
 import {defaultMovieGlueHeader} from '../../utils/constants';
 import {sortCinemasByDistance} from '../../utils/helper';
 import {scale} from '../../utils/scaling';
+import {en} from '../../i18n';
 import commonStyles from '../../styles';
 import styles from './style';
 
@@ -132,6 +134,7 @@ const HomeScreen = (): React.ReactElement => {
           setOpenCallback={setCinemaDropdownOpen}
           setDropdownValueCallback={setSelectedCinemaItem}
         />
+        <HeadingRow leftText={en.movies} rightText={en.vew_more} />
         <View style={sliderContainer}>{renderCarousel()}</View>
       </SafeAreaView>
     </View>

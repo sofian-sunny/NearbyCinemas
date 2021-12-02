@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
-import {moderateScale, verticalScale, scale} from '../../utils/scaling';
+import {moderateScale, verticalScale} from '../../utils/scaling';
 import colors from '../../theme/colors';
 
-const {white} = colors;
+const {white, dark_gray} = colors;
 
 export default StyleSheet.create({
   subContainer: {
@@ -35,15 +35,16 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   playIcon: {
-    width: scale(36),
-    height: verticalScale(36),
+    width: moderateScale(48),
+    height: moderateScale(48),
     alignSelf: 'center',
+    marginVertical: verticalScale(10),
   },
   titleStyle: {
     fontSize: moderateScale(24),
-    color: white,
+    color: dark_gray,
     textAlign: 'center',
-    margin: verticalScale(15),
+    marginVertical: verticalScale(10),
   },
   loaderContainer: {
     ...StyleSheet.absoluteFillObject,

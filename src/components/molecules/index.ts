@@ -1,3 +1,4 @@
 import MovieDetailsCard from './movieDetails';
 import DetailsBottomView from './detailsBottomView';
-export {MovieDetailsCard, DetailsBottomView};
+import HeadingRow from './sliderHeading';
+export {MovieDetailsCard, DetailsBottomView, HeadingRow};

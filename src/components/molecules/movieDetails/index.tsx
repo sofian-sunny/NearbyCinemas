@@ -2,12 +2,12 @@ import React, {FunctionComponent} from 'react';
 import {TextStyle, View} from 'react-native';
 import StarRating from 'react-native-star-rating';
 import {CustomText, ImageView} from '../../atoms';
-import {timeConvertHourMiins} from '../../../utils/helper';
+import {timeConvertHourMins} from '../../../utils/helper';
 import styles from './style';
 import color from '../../../theme/colors';
 
 const moment = require('moment');
-const {container, subTitle} = styles;
+const {container, subTitle, ratingContainer, titleText} = styles;
 
 type CustomProps = {
   imageIcon: string;
@@ -28,16 +28,16 @@ const MovieDetailsCard: FunctionComponent<CustomProps> = ({
   return (
     <View style={container}>
       <ImageView sourceIcon={imageIcon} style={imageStyle} />
-      <CustomText style={titleStyle} textType="regular">
+      <CustomText style={titleText} textType="regular">
         {title}
       </CustomText>
       <CustomText style={titleStyle} textType="regular">
-        {`${moment(releaseDate).format('YYYY')}   |   ${timeConvertHourMiins(
+        {`${moment(releaseDate).format('YYYY')}   |   ${timeConvertHourMins(
           duration_mins,
         )}`}
       </CustomText>
       <StarRating
-        containerStyle={{width: 200, alignSelf: 'center'}}
+        containerStyle={ratingContainer}
         fullStarColor={color.yellow}
         disabled={true}
         maxStars={5}

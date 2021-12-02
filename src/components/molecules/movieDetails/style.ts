@@ -16,4 +16,13 @@ export default StyleSheet.create({
     textAlign: 'center',
     margin: verticalScale(15),
   },
+  titleText: {
+    fontSize: moderateScale(24),
+    color: white,
+    textAlign: 'center',
+  },
+  ratingContainer: {
+    width: 200,
+    alignSelf: 'center',
+  },
 });
