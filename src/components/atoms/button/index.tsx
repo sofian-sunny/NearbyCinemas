@@ -4,19 +4,27 @@ import styles from './style';
 
 const {container, buttonText, disabledStyle, disabledText} = styles;
 
-const ButtonView = ({onPress, title, isDisabled, btnStyle, btnTextStyle}) => (
-  <TouchableOpacity
-    onPress={onPress}
-    style={[container, btnStyle, isDisabled ? disabledStyle : {}]}
-    activeOpacity={0.7}>
-    <Text style={[buttonText, btnTextStyle, isDisabled ? disabledText : {}]}>
-      {title}
-    </Text>
-  </TouchableOpacity>
-);
+const ButtonView = ({
+  title,
+  isDisabled,
+  btnStyle,
+  btnTextStyle,
+  onButtonPress,
+}) => {
+  return (
+    <TouchableOpacity
+      onPress={() => onButtonPress()}
+      style={[container, btnStyle, isDisabled ? disabledStyle : {}]}
+      activeOpacity={0.7}>
+      <Text style={[buttonText, btnTextStyle, isDisabled ? disabledText : {}]}>
+        {title}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 ButtonView.defaultProps = {
-  onPress: () => {},
+  onButtonPress: () => {},
   title: '',
   isDisabled: false,
 };

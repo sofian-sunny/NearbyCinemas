@@ -2,6 +2,7 @@ import React from 'react';
 import {MainStack, MainRoutes} from './routes';
 import HomeScreen from '../screens/Home';
 import DetailScreen from '../screens/DetailScreen';
+import TicketHistoryScreen from '../screens/TicketHistoryScreen';
 
 const Main = (): React.ReactElement => {
   return (
@@ -18,6 +19,13 @@ const Main = (): React.ReactElement => {
         component={DetailScreen}
         options={{
           headerShown: false,
+        }}
+      />
+      <MainStack.Screen
+        name={MainRoutes.TicketHistoryScreen}
+        component={TicketHistoryScreen}
+        options={{
+          headerShown: true,
         }}
       />
     </MainStack.Navigator>

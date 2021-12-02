@@ -5,6 +5,7 @@ import BackButton from './backButton';
 import OnPressWrapper from './onPressWrapper';
 import ImageView from './image';
 import ButtonView from './button';
+import Separator from './separator';
 
 export {
   CustomText,
@@ -14,4 +15,5 @@ export {
   OnPressWrapper,
   ImageView,
   ButtonView,
+  Separator,
 };

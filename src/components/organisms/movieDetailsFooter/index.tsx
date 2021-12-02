@@ -17,6 +17,7 @@ const MovieDetailsFooter: FunctionComponent<CustomProps> = ({
   titleStyle,
   imageStyle,
   movieDetailsResult,
+  onPressBookNow,
 }) => {
   return (
     <View style={container}>
@@ -27,7 +28,7 @@ const MovieDetailsFooter: FunctionComponent<CustomProps> = ({
         imageStyle={imageStyle}
         movieDetailsResult={movieDetailsResult}
       />
-      <DetailsBottomView />
+      <DetailsBottomView onPressBookNow={onPressBookNow} />
     </View>
   );
 };

@@ -20,3 +20,10 @@ export function fetchMovieDetailsAction(payload: any) {
     payload,
   };
 }
+
+export function bookSelectedMovieAction(payload: any) {
+  return {
+    type: actionTypes.BOOK_SELECTED_MOVIE,
+    payload,
+  };
+}

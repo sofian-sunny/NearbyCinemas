@@ -66,8 +66,16 @@ const HomeScreen = (): React.ReactElement => {
 
   const onPressMovieItem = selectedMovieItem => {
     // navigate to the movie details page and pass selected movie item
+    const {nearbyCinemasResult} = nearByCinemasResponse;
+    const {cinemas} = nearbyCinemasResult;
+    const selectedCinemaObj = cinemas?.filter(
+      element => element.cinema_id === selectedCinemaItem,
+    );
+    console.log('selectedCinemaObj ', selectedCinemaObj);
+
     navigation.navigate(MainRoutes.DetailScreen, {
       movieListItem: selectedMovieItem,
+      cinemaItem: selectedCinemaObj[0],
     });
   };
 
@@ -121,8 +129,6 @@ const HomeScreen = (): React.ReactElement => {
       />
     );
   };
-
-  console.log('dropDownCinemaItems ', dropDownCinemaItems);
 
   return (
     <View style={container}>

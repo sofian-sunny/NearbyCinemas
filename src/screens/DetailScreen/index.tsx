@@ -4,8 +4,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {BlurView} from '@react-native-community/blur';
 import {useNavigation} from '@react-navigation/native';
 import {BackButton, OnPressWrapper} from '../../components/atoms';
-import {fetchMovieDetailsAction} from '../../stores/actions';
+import {
+  fetchMovieDetailsAction,
+  bookSelectedMovieAction,
+} from '../../stores/actions';
 import {defaultMovieGlueHeader} from '../../utils/constants';
+import {MainRoutes} from '../../navigation/routes';
 import {RootState} from '../../stores/reducers';
 import {MovieDetailsFooter} from '../../components/organisms';
 import {PLAY_ICON} from '../../assets';
@@ -48,16 +52,48 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
 
     return <ActivityIndicator style={loaderContainer} />;
   };
+  const onPressBackButton = () => {
+    navigation.goBack();
+  };
+
+  const onPressBookNow = () => {
+    const cinemaItem = route?.params?.cinemaItem;
+    const {film_name, images, show_dates, film_id, duration_mins} =
+      movieDetailsResult;
+    const {address, address2, cinema_name, city} = cinemaItem;
+    const {bookedMoviesList} = movieDetailsResponse;
+
+    let selectedIndexItem = bookedMoviesList.find(
+      item => item.film_id === film_id,
+    );
+
+    const bookingItem = {
+      film_name,
+      images,
+      show_dates,
+      film_id,
+      duration_mins,
+      address,
+      address2,
+      cinema_name,
+      city,
+      ticketCount: 1,
+    };
+    if (!selectedIndexItem || selectedIndexItem?.ticketCount < 2) {
+      dispatch(bookSelectedMovieAction(bookingItem));
+      navigation.navigate(MainRoutes.TicketHistoryScreen, {
+        cinemaItem: cinemaItem,
+      });
+    } else {
+      alert('You booked 10 tickets');
+    }
+  };
 
   const renderBackgroundImage = () => {
     // get poster image for the selected movie
     const moviePosterImg =
       movieListItem?.images?.poster?.['1']?.medium?.film_image;
-
     const {film_name} = movieListItem;
-    const onPressBackButton = () => {
-      navigation.goBack();
-    };
 
     return (
       <ImageBackground
@@ -83,6 +119,7 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
                 imageStyle={playIcon}
                 titleStyle={titleStyle}
                 movieDetailsResult={movieDetailsResult}
+                onPressBookNow={onPressBookNow}
               />
             )}
           </View>

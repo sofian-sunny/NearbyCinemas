@@ -8,24 +8,22 @@ const {book_ticket, share} = en;
 const {container, btnStyle, btnBookStyle, btnTextStyle, btnBookTextStyle} =
   styles;
 
-const DetailsBottomView: FunctionComponent = () => {
-  const onPressBookTicket = () => {};
-
-  const onPressShare = () => {};
-
+const DetailsBottomView: FunctionComponent = ({onPressBookNow}) => {
   return (
     <View style={container}>
       <ButtonView
         title={book_ticket}
-        onPress={onPressBookTicket}
         btnStyle={btnBookStyle}
         btnTextStyle={btnBookTextStyle}
+        onButtonPress={onPressBookNow}
+        isDisabled={false}
       />
       <ButtonView
         title={share}
-        onPress={onPressShare}
         btnStyle={btnStyle}
         btnTextStyle={btnTextStyle}
+        onButtonPress={onPressBookNow}
+        isDisabled={false}
       />
     </View>
   );

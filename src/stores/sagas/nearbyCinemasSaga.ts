@@ -12,6 +12,8 @@ import {
   FETCH_MOVIE_DETAILS_START,
   FETCH_MOVIE_DETAILS_SUCCESS,
   FETCH_MOVIE_DETAILS_ERROR,
+  BOOK_SELECTED_MOVIE,
+  ADD_SELECTED_MOVIE,
 } from '../actionTypes';
 import {fetchApiData} from '../../services';
 import {NearbyCinemas, CinemaMovies, MovieDetails} from '../../type/type';
@@ -49,10 +51,16 @@ function* fetchMovieDetailsSaga(action: any) {
   }
 }
 
+function* bookSelectedMovieSaga(action: any) {
+  const {payload} = action;
+  yield put({type: ADD_SELECTED_MOVIE, data: payload});
+}
+
 function* nearbyCinemasSaga() {
   yield takeEvery(FETCH_NEARBY_CINEMAS, fetchNearByCinemasSaga);
   yield takeEvery(FETCH_CINEMA_MOVIES, fetchMoviesByCinemaIdSaga);
   yield takeEvery(FETCH_MOVIE_DETAILS, fetchMovieDetailsSaga);
+  yield takeEvery(BOOK_SELECTED_MOVIE, bookSelectedMovieSaga);
 }
 
 export default nearbyCinemasSaga;

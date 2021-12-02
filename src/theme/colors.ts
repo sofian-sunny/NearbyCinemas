@@ -9,6 +9,8 @@ const colors = {
   red: '#ed4c3d',
   dark_gray: '#7e797f',
   blue_color: '#3d83c0',
+  disabledColor: '#dfdfdf',
+  lightGray: '#f2f2f2',
 };
 
 export default colors;
