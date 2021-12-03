@@ -15,4 +15,4 @@ Separator.defaultProps = {
   style: {},
 };
 
-export default Separator;
+export default React.memo(Separator);

@@ -18,6 +18,8 @@ const MovieDetailsFooter: FunctionComponent<CustomProps> = ({
   imageStyle,
   movieDetailsResult,
   onPressBookNow,
+  onPressPlayVideo,
+  onPressShare,
 }) => {
   return (
     <View style={container}>
@@ -27,10 +29,14 @@ const MovieDetailsFooter: FunctionComponent<CustomProps> = ({
         titleStyle={titleStyle}
         imageStyle={imageStyle}
         movieDetailsResult={movieDetailsResult}
+        onPressPlayVideo={onPressPlayVideo}
       />
-      <DetailsBottomView onPressBookNow={onPressBookNow} />
+      <DetailsBottomView
+        onPressBookNow={onPressBookNow}
+        onPressShare={onPressShare}
+      />
     </View>
   );
 };
 
-export default MovieDetailsFooter;
+export default React.memo(MovieDetailsFooter);

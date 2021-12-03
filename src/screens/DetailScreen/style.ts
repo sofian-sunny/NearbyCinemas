@@ -1,8 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {moderateScale, verticalScale} from '../../utils/scaling';
+import {moderateScale, verticalScale, scale} from '../../utils/scaling';
 import colors from '../../theme/colors';
 
 const {white, dark_gray} = colors;
+let iconSize = 22;
 
 export default StyleSheet.create({
   subContainer: {
@@ -23,7 +24,6 @@ export default StyleSheet.create({
   },
   absolute: {
     position: 'absolute',
-    flex: 1,
     top: 0,
     left: 0,
     bottom: 0,
@@ -48,5 +48,12 @@ export default StyleSheet.create({
   },
   loaderContainer: {
     ...StyleSheet.absoluteFillObject,
+  },
+  closeIcon: {
+    width: iconSize,
+    height: iconSize,
+    marginTop: verticalScale(40),
+    marginLeft: scale(20),
+    zIndex: 9999,
   },
 });

@@ -1,9 +1,21 @@
-import React, {useEffect} from 'react';
-import {View, ImageBackground, ActivityIndicator} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  ImageBackground,
+  ActivityIndicator,
+  Modal,
+  SafeAreaView,
+  Share,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {BlurView} from '@react-native-community/blur';
 import {useNavigation} from '@react-navigation/native';
-import {BackButton, OnPressWrapper} from '../../components/atoms';
+import {
+  BackButton,
+  OnPressWrapper,
+  VideoView,
+  ImageView,
+} from '../../components/atoms';
 import {
   fetchMovieDetailsAction,
   bookSelectedMovieAction,
@@ -12,17 +24,26 @@ import {defaultMovieGlueHeader} from '../../utils/constants';
 import {MainRoutes} from '../../navigation/routes';
 import {RootState} from '../../stores/reducers';
 import {MovieDetailsFooter} from '../../components/organisms';
-import {PLAY_ICON} from '../../assets';
+import {PLAY_ICON, CROSS_ICON} from '../../assets';
 import styles from './style';
 
-const {bgImage, contentContainer, playIcon, titleStyle, loaderContainer} =
-  styles;
+const {
+  container,
+  bgImage,
+  contentContainer,
+  playIcon,
+  titleStyle,
+  loaderContainer,
+  closeIcon,
+  absolute,
+} = styles;
 
 const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
   // get selected movie item
   const movieListItem = route?.params?.movieListItem;
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const [modalVisible, setModalVisible] = useState(false);
 
   // get movie details state response
   const movieDetailsResponse = useSelector(
@@ -56,6 +77,15 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
     navigation.goBack();
   };
 
+  const onPressShare = () => {
+    const {film_name} = movieDetailsResult;
+    Share.share({
+      message: `${film_name} `,
+    })
+      .then(result => console.log(result))
+      .catch(errorMsg => console.log(errorMsg));
+  };
+
   const onPressBookNow = () => {
     const cinemaItem = route?.params?.cinemaItem;
     const {film_name, images, show_dates, film_id, duration_mins} =
@@ -79,7 +109,7 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
       city,
       ticketCount: 1,
     };
-    if (!selectedIndexItem || selectedIndexItem?.ticketCount < 2) {
+    if (!selectedIndexItem || selectedIndexItem?.ticketCount < 10) {
       dispatch(bookSelectedMovieAction(bookingItem));
       navigation.navigate(MainRoutes.TicketHistoryScreen, {
         cinemaItem: cinemaItem,
@@ -87,6 +117,26 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
     } else {
       alert('You booked 10 tickets');
     }
+  };
+
+  const onPressPlayVideo = () => {
+    const {trailers} = movieDetailsResult;
+    if (!trailers) {
+      return alert('No trailer found!');
+    }
+    const videoURI = trailers?.high?.[0].film_trailer;
+    if (videoURI) {
+      setModalVisible(true);
+    }
+  };
+
+  const renderVideoView = () => {
+    if (!movieDetailsResult) {
+      return null;
+    }
+    const {trailers} = movieDetailsResult;
+    const videoURI = trailers?.high?.[0].film_trailer;
+    return <VideoView paused={!modalVisible} uri={videoURI} />;
   };
 
   const renderBackgroundImage = () => {
@@ -101,16 +151,17 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
         resizeMode="cover"
         style={bgImage}>
         <BlurView
-          style={styles.absolute}
+          style={absolute}
           blurType="light"
           blurAmount={5}
           reducedTransparencyFallbackColor="white"
         />
-        <View style={styles.container}>
+        <View style={container}>
           {showLoader()}
           <OnPressWrapper onPressCallBack={onPressBackButton}>
             <BackButton />
           </OnPressWrapper>
+
           <View style={contentContainer}>
             {movieDetailsResult && (
               <MovieDetailsFooter
@@ -120,9 +171,24 @@ const DetailScreen = ({route}: DetailsScreenProps): React.ReactElement => {
                 titleStyle={titleStyle}
                 movieDetailsResult={movieDetailsResult}
                 onPressBookNow={onPressBookNow}
+                onPressPlayVideo={onPressPlayVideo}
+                onPressShare={onPressShare}
               />
             )}
           </View>
+          <SafeAreaView>
+            <Modal
+              animationType="slide"
+              visible={modalVisible}
+              onRequestClose={() => {
+                setModalVisible(!modalVisible);
+              }}>
+              <OnPressWrapper onPressCallBack={() => setModalVisible(false)}>
+                <ImageView sourceIcon={CROSS_ICON} style={closeIcon} />
+              </OnPressWrapper>
+              {renderVideoView()}
+            </Modal>
+          </SafeAreaView>
         </View>
       </ImageBackground>
     );

@@ -29,4 +29,4 @@ ButtonView.defaultProps = {
   isDisabled: false,
 };
 
-export default ButtonView;
+export default React.memo(ButtonView);

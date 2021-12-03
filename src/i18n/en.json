@@ -6,5 +6,6 @@
   "movies": "Movies",
   "movie_details": "Movie Details",
   "tickets": "Tickets",
-  "duration": "Duration"
+  "duration": "Duration",
+  "ticket": "Tickets History"
 }

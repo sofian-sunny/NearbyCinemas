@@ -17,4 +17,4 @@ OnPressWrapper.defaultProps = {
   onPressCallBack: () => {},
 };
 
-export default OnPressWrapper;
+export default React.memo(OnPressWrapper);

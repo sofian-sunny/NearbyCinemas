@@ -23,4 +23,4 @@ HeadingRow.defaultProps = {
   rightText: '',
 };
 
-export default HeadingRow;
+export default React.memo(HeadingRow);

@@ -14,4 +14,4 @@ const CardView: FunctionComponent<CustomProps> = ({children, style}) => {
   return <View style={[container, {...passedStyles}]}>{children}</View>;
 };
 
-export default CardView;
+export default React.memo(CardView);

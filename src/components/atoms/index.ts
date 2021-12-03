@@ -6,6 +6,7 @@ import OnPressWrapper from './onPressWrapper';
 import ImageView from './image';
 import ButtonView from './button';
 import Separator from './separator';
+import VideoView from './videoView';
 
 export {
   CustomText,
@@ -16,4 +17,5 @@ export {
   ImageView,
   ButtonView,
   Separator,
+  VideoView,
 };

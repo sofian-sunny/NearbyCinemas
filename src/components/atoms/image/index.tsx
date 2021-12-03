@@ -10,4 +10,4 @@ ImageView.defaultProps = {
   style: {},
 };
 
-export default ImageView;
+export default React.memo(ImageView);

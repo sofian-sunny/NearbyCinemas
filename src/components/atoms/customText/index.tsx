@@ -40,4 +40,4 @@ const CustomText: FunctionComponent<CustomTextProps> = ({
   );
 };
 
-export default CustomText;
+export default React.memo(CustomText);

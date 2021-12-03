@@ -64,4 +64,4 @@ const MovieHistoryCard = ({
   );
 };
 
-export default MovieHistoryCard;
+export default React.memo(MovieHistoryCard);

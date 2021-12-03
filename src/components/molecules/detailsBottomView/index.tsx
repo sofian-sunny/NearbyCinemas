@@ -8,7 +8,10 @@ const {book_ticket, share} = en;
 const {container, btnStyle, btnBookStyle, btnTextStyle, btnBookTextStyle} =
   styles;
 
-const DetailsBottomView: FunctionComponent = ({onPressBookNow}) => {
+const DetailsBottomView: FunctionComponent = ({
+  onPressBookNow,
+  onPressShare,
+}) => {
   return (
     <View style={container}>
       <ButtonView
@@ -22,11 +25,11 @@ const DetailsBottomView: FunctionComponent = ({onPressBookNow}) => {
         title={share}
         btnStyle={btnStyle}
         btnTextStyle={btnTextStyle}
-        onButtonPress={onPressBookNow}
+        onButtonPress={onPressShare}
         isDisabled={false}
       />
     </View>
   );
 };
 
-export default DetailsBottomView;
+export default React.memo(DetailsBottomView);

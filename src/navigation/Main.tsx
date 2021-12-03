@@ -3,6 +3,7 @@ import {MainStack, MainRoutes} from './routes';
 import HomeScreen from '../screens/Home';
 import DetailScreen from '../screens/DetailScreen';
 import TicketHistoryScreen from '../screens/TicketHistoryScreen';
+import {en} from '../i18n';
 
 const Main = (): React.ReactElement => {
   return (
@@ -26,6 +27,8 @@ const Main = (): React.ReactElement => {
         component={TicketHistoryScreen}
         options={{
           headerShown: true,
+          title: en.ticket,
+          headerBackTitle: '',
         }}
       />
     </MainStack.Navigator>

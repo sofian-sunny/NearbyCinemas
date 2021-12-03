@@ -36,4 +36,4 @@ DropdownView.defaultProps = {
   setOpenCallback: () => {},
 };
 
-export default DropdownView;
+export default React.memo(DropdownView);
